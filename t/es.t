@@ -1,8 +1,8 @@
 
-# $Id: es.t,v 1.5 2013-03-03 15:03:35 Martin Exp $
-
 use strict;
 use warnings;
+
+my $VERSION = 1.501;
 
 use constant DEBUG_CONTENTS => 0;
 
@@ -41,7 +41,7 @@ CONTENTS:
 diag("Sending 1-page auction query to ebay.es to check contents...");
 $iDebug = DEBUG_CONTENTS ? 2 : 0;
 $iDump = 0;
-tm_run_test('normal', 'trinidad', 1, 99, $iDebug, $iDump);
+tm_run_test('normal', 'trinidad billete', 1, 99, $iDebug, $iDump);
 # Now inspect the results:
 my $sBidPattern = 'bid\s'. $WWW::Search::Test::oSearch->_currency_pattern;
 my $qrBid = qr{\b$sBidPattern};
@@ -49,7 +49,7 @@ my $qrBid = qr{\b$sBidPattern};
 my @ara = (
            ['description', 'like', $qrBid, 'description contains bid amount'],
            ['url', 'like', qr{\Ahttp://(cgi|www)\d*\.ebay\.es}, 'URL is from ebay.es'],
-           ['title', 'ne', q{}, 'result Title is not empty'],
+           ['title', 'ne', q{''}, 'result Title is not empty'],
            ['change_date', 'date', 'change_date is really a date'],
            ['description', 'like', qr{([0-9]+|no)\s+bids?}, 'result bidcount is ok'],
            ['bid_count', 'like', qr{\A\d+\Z}, 'bid_count is a number'],

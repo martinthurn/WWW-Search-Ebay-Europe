@@ -54,7 +54,7 @@ sub _result_count_element_specs_USE_DEFAULT
 
 sub _result_count_pattern
   {
-  return qr'(?:encontrados?\s+)?(\d+)\s+(art(í|Ã­)culos|resultados)\s+(?:encontrados?)?';
+  return qr'(?:encontrados?\s+)?(\d+)\s+(art(í|Ã­)culo|resultado|anuncio)s?';
   } # _result_count_pattern
 
 
