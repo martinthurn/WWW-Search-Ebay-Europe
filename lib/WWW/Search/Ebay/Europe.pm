@@ -1,5 +1,11 @@
 
-# $rcs = ' $Id: Europe.pm,v 2.12 2013-03-05 03:15:23 Martin Exp $ ' ;
+package WWW::Search::Ebay::Europe;
+
+use strict;
+use warnings;
+
+our
+$VERSION = '2.014';
 
 =head1 NAME
 
@@ -23,14 +29,6 @@ Martin 'Kingpin' Thurn, C<mthurn at cpan.org>, L<http://tinyurl.com/nn67z>.
 This software is released under the same license as perl itself.
 
 =cut
-
-package WWW::Search::Ebay::Europe;
-
-use strict;
-use warnings;
-
-our
-$VERSION = '2.013';
 
 1;
 
