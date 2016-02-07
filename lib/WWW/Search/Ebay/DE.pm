@@ -1,5 +1,11 @@
 
-# $Id: DE.pm,v 2.103 2013-03-03 15:03:57 Martin Exp $
+package WWW::Search::Ebay::DE;
+
+use strict;
+use warnings;
+
+our
+$VERSION = 2.104;
 
 =head1 NAME
 
@@ -24,15 +30,10 @@ Martin 'Kingpin' Thurn, C<mthurn at cpan.org>, L<http://tinyurl.com/nn67z>.
 
 =cut
 
-package WWW::Search::Ebay::DE;
-
-use strict;
-use warnings;
-
 use Carp;
 use base 'WWW::Search::Ebay';
-our
-$VERSION = do { my @r = (q$Revision: 2.103 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
+# We need the version that allows shipping to be "unknown":
+use WWW::Search::Ebay 2.273;
 
 sub _native_setup_search
   {
@@ -60,7 +61,7 @@ sub _result_count_element_specs_NOT_NEEDED
 
 sub _result_count_pattern
   {
-  return qr'(\d+)\s+(Artikel|Ergebnisse)\s+gefunden 'i;
+  return qr'(\d+)\s+(Artikel|Ergebnisse|Angebote)'i;
   } # _result_count_pattern
 
 sub _next_text
@@ -89,6 +90,8 @@ sub preprocess_results_page
   my $sPage = shift;
   # Make it easy to parse the shipping portion of the list:
   $sPage =~ s!(<span\s(class="ship[^"]*")>)!</td><td $2>$1!g;
+  # Clean up "no shipping info":
+  $sPage =~ s/\s*Keine Angaben zum Versand\s*/UNKNOWN/g;
   # print STDERR $sPage;
   return $self->SUPER::preprocess_results_page($sPage);
   # print STDERR Dumper($self->{response});

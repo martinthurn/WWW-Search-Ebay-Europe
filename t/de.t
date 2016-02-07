@@ -1,8 +1,8 @@
 
-# $Id: de.t,v 1.7 2013-03-03 15:03:35 Martin Exp $
-
 use strict;
 use warnings;
+
+my $VERSION = 1.701;
 
 use ExtUtils::testlib;
 use Test::More 'no_plan';
@@ -51,7 +51,7 @@ my $qrBid = qr{\b$sBidPattern};
 my @ara = (
            ['description', 'like', $qrBid, 'description contains bid amount'],
            ['url', 'like', qr{\Ahttp://(cgi|www)\d*\.ebay\.de}, 'URL is from ebay.de'],
-           ['title', 'ne', q{}, 'result Title is not empty'],
+           ['title', 'ne', q{''}, 'result Title is not empty'],
            ['change_date', 'date', 'change_date is really a date'],
            ['description', 'like', qr{([0-9]+|no)\s+bids?}, 'result bidcount is ok'],
            ['bid_count', 'like', qr{\A\d+\Z}, 'bid_count is a number'],
