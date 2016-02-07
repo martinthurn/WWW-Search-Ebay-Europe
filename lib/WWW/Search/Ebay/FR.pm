@@ -1,5 +1,11 @@
 
-# $Id: FR.pm,v 2.104 2013-03-17 01:11:23 Martin Exp $
+package WWW::Search::Ebay::FR;
+
+use strict;
+use warnings;
+
+our
+$VERSION = 2.105;
 
 =head1 NAME
 
@@ -24,16 +30,9 @@ Martin 'Kingpin' Thurn, C<mthurn at cpan.org>, L<http://tinyurl.com/nn67z>.
 
 =cut
 
-package WWW::Search::Ebay::FR;
-
-use strict;
-use warnings;
-
 use Carp;
 use WWW::Search::Ebay 2.258;
 use base 'WWW::Search::Ebay';
-our
-$VERSION = do { my @r = (q$Revision: 2.104 $ =~ /\d+/g); sprintf "%d."."%03d" x $#r, @r };
 
 sub _native_setup_search
   {
@@ -54,7 +53,7 @@ sub _result_count_element_specs
 
 sub _result_count_pattern
   {
-  return qr'(\d+)[ \t\040\240]*(r[�©é]+sultat|objet)s?\s+trouv';
+  return qr'(\d+)[^0-9a-z]*(r.sultat|objet|annonce)s'i;
   } # _result_count_pattern
 
 

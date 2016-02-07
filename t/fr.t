@@ -1,8 +1,8 @@
 
-# $Id: fr.t,v 1.6 2013-03-03 15:03:35 Martin Exp $
-
 use strict;
 use warnings;
+
+my $VERSION = 1.601;
 
 use constant DEBUG_CONTENTS => 0;
 
@@ -43,7 +43,7 @@ diag("Sending 1-page query to ebay.fr to check contents...");
 $iDebug = DEBUG_CONTENTS ? 2 : 0;
 $iDump = 0;
 $WWW::Search::Test::sSaveOnError = q{fr-1-failed.html};
-tm_run_test('normal', 'trinidad', 1, 99, $iDebug, $iDump);
+tm_run_test('normal', 'gambian', 1, 99, $iDebug, $iDump);
 # Now inspect the results:
 my $sBidPattern = 'bid\s'. $WWW::Search::Test::oSearch->_currency_pattern;
 my $qrBid = qr{\b$sBidPattern};
@@ -51,7 +51,7 @@ my $qrBid = qr{\b$sBidPattern};
 my @ara = (
            ['description', 'like', $qrBid, 'description contains bid amount'],
            ['url', 'like', qr{\Ahttp://(cgi|www)\d*\.ebay\.fr}, 'URL is from ebay.fr'],
-           ['title', 'ne', q{}, 'result Title is not empty'],
+           ['title', 'ne', q{''}, 'result Title is not empty'],
            ['change_date', 'date', 'change_date is really a date'],
            ['description', 'like', qr{([0-9]+|no)\s+bids?}, 'result bidcount is ok'],
            ['bid_count', 'like', qr{\A\d+\Z}, 'bid_count is a number'],
