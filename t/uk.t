@@ -54,7 +54,7 @@ my $qrBid = qr{\b$sBidPattern};
 my @ara = (
            ['description', 'like', $qrBid, 'description contains bid amount'],
            ['url', 'like', qr{\Ahttp://(cgi|www)\d*\.ebay\.co.uk}, 'URL is from ebay.co.uk'],
-           ['title', 'ne', q{}, 'result Title is not empty'],
+           ['title', 'ne', q{''}, 'result Title is not empty'],
            ['change_date', 'date', 'change_date is really a date'],
            ['description', 'like', qr{([0-9]+|no)\s+bids?}, 'result bidcount is ok'],
            ['bid_count', 'like', qr{\A\d+\Z}, 'bid_count is a number'],
