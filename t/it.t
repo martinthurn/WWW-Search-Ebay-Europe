@@ -46,7 +46,7 @@ $WWW::Search::Test::sSaveOnError = q{it-1-failed.html}; # }; # Emacs bug
 diag("Sending 1-page query to ebay.it to check contents...");
 $iDebug = DEBUG_CONTENTS ? 2 : 0;
 $iDump = 0;
-tm_run_test('normal', 'trinidad', 1, 99, $iDebug, $iDump);
+tm_run_test('normal', 'gambian', 1, 99, $iDebug, $iDump);
 # Now inspect the results:
 my $sBidPattern = 'bid\s'. $WWW::Search::Test::oSearch->_currency_pattern;
 my $qrBid = qr{\b$sBidPattern};
@@ -54,10 +54,10 @@ my $qrBid = qr{\b$sBidPattern};
 my @ara = (
            ['description', 'like', $qrBid, 'description contains bid amount'],
            ['url', 'like', qr{\Ahttp://(cgi|www)\d*\.ebay\.it}, 'URL is from ebay.it'],
-           ['title', 'ne', q{}, 'result Title is not empty'],
+           ['title', 'ne', q{''}, 'result Title is not empty'],
            ['change_date', 'date', 'change_date is really a date'],
            ['description', 'like', qr{([0-9]+|no)\s+bids?}, 'result bidcount is ok'],
-           ['bid_count', 'like', qr{\A\d+\Z}, 'bid_count is a number'],
+           ['bid_count', 'like', qr{\A\d+\z}, 'bid_count is a number'],
           );
 WWW::Search::Test::test_most_results(\@ara, 1.00);
 ALL_DONE:
