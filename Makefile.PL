@@ -18,12 +18,10 @@ recommends('Test::Pod');
 recommends('Test::Pod::Coverage');
 # We need the version that has methods named with leading underscore:
 requires('WWW::Search' => 2.557);
-# We need the version that has the "repeat column" mechanism:
-requires('WWW::Search::Ebay' => 2.258);
+# We need the version that allows shipping to be "unknown":
+requires('WWW::Search::Ebay' => 2.273);
 # We need the version that has the bidder and seller methods:
 requires('WWW::SearchResult' => 2.067);
-# We need the version that exports its tm_ functions:
-test_requires('WWW::Search::Test' => 2.265);
 # We need the version with test_most_results():
 test_requires('WWW::Search::Test' => 2.284);
 
