@@ -6,6 +6,7 @@ blib
 cover_db
 CVS
 diff$
+git
 failed
 (?i:ignore)
 (?i:junk)
@@ -13,6 +14,7 @@ kpf
 ^MANIFEST\.
 ^Makefile$
 ^Makefile.old$
+META
 \.orig$
 \bPages\b
 patch$
